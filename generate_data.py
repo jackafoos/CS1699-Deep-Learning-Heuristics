@@ -9,6 +9,7 @@ This function will iteratively generate num graphs, run them through the
 heuristics and store the tuple with graph and class scores in path.
 """
 def generate_graphs(path, num):
+    print('Generating Data for {}'.format(path))
     g_list = []
     for i in range(num):
         if i % (num/10) == 0:
@@ -50,7 +51,8 @@ def get_graph_class_scores(graph):
 
 """
 Nearest Neighbor picks a starting node in 'graph' and iteratively finds the nearest
-unselected adjacent node and adds it next in the tour
+unselected adjacent node and adds it next in the tour.
+Returns the total distance for the tour.
 """
 def nearest_neighbor(graph):
     raise NotImplementedError
@@ -59,6 +61,7 @@ def nearest_neighbor(graph):
 Christofides builds a minimum spanning tree from all nodes. Then it creates a minumum
 weight matching on the set of nodes having an odd degree and adds it with the MST.
 Creates an Euler cycle from the combined graph.
+Returns the total distance for the tour.
 """
 def christofides(graph):
     raise NotImplementedError
@@ -67,6 +70,7 @@ def christofides(graph):
 The Greedy algorithm flattens the graph and removes duplicate edges. Then select
 the shortest edge and make sure that it doesnt make a cycle with < N edges. Either
 repeat or stop when N edges are added.
+Returns the total distance for the tour.
 """
 def greedy(graph):
     raise NotImplementedError
@@ -76,10 +80,13 @@ Nearest Insertion selects the shortest edge and makes a subtour of it. Then sele
 a city not in the subtour with the shortest edge connecting to one of the cities
 in the subtour. Then find an edge in the subtour such that the cost of insertion
 is minimal.
+Returns the total distance for the tour.
 """
 def nearest_insertion(graph):
     raise NotImplementedError
 
 
 # Generate Graphs for training and test data
-generate_graphs('graphs.csv', 10000)
+generate_graphs('training_graphs.csv', 9000)
+generate_graphs('validation_graphs.csv', 1000)
+generate_graphs('testing_graphs.csv', 4000)
